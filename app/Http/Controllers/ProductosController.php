@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -14,7 +15,8 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        echo "hey you";
+        $productos=Producto::all();
+        return view("productos.index",compact("productos"));
     }
 
     /**
@@ -38,7 +40,14 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         //
-        return view("productos.insert");
+        $producto = new Producto();
+        $producto->Nombre=$request->nombre;
+        $producto->Seccion=$request->seccion;
+        $producto->Precio=$request->precio;
+        $producto->Fecha=$request->fecha;
+        $producto->Pais=$request->pais;
+
+        $producto->save();
     }
 
     /**
@@ -50,6 +59,8 @@ class ProductosController extends Controller
     public function show($id)
     {
         //
+        $producto=Producto::findOrFail($id);
+        return view("productos.show",compact("producto"));
     }
 
     /**
@@ -61,7 +72,8 @@ class ProductosController extends Controller
     public function edit($id)
     {
         //
-        
+        $producto=Producto::findOrFail($id);
+        return view("productos.edit",compact("producto"));
     }
 
     /**
@@ -74,7 +86,9 @@ class ProductosController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return view("productos.update");
+        $producto=Producto::findOrFail($id);
+        $producto->update($request->all());
+        return redirect("/productos");
     }
 
     /**
@@ -86,6 +100,9 @@ class ProductosController extends Controller
     public function destroy($id)
     {
         //
-        return view("productos.delete");
+        $producto=Producto::findOrFail($id);
+        $producto->delete();
+        return redirect("/productos");//pagina index o inicio
+
     }
 }
