@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateProductosRequest;
 
 class ProductosController extends Controller
 {
@@ -37,9 +38,9 @@ class ProductosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductosRequest $request)
     {
-        //
+        //$this->validate($request,['seccion'=>'required', 'pais'=>'required']);
         $producto = new Producto();
         $producto->Nombre=$request->nombre;
         $producto->Seccion=$request->seccion;
