@@ -6,17 +6,27 @@ INSERTAR REGISTROS
 
 @section("contenido")
 
-<form method="post" action="/productos", 'post', 'files'=>true>
+<form method="post" action="/productos" enctype="multipart/form-data">
+
+
+
 <table>
-<tr></tr>
+<tr>
 <td>
-{!!Form::file('file')!!}
+    <label for="imagen">Imagen:</label></td></tr>
 
-</td>
-
-
+<td><input type="file" name="imagen" size="20"></td></tr>
+<tr><td colspan="2" style="text-align:center"></td></tr>
 
 </table>
+
+
+
+
+
+
+
+
     <table>
         <tr>
             <td>Nombre: </td>

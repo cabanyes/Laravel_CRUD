@@ -40,7 +40,7 @@ class ProductosController extends Controller
      */
     public function store(CreateProductosRequest $request)
     {
-        //$this->validate($request,['seccion'=>'required', 'pais'=>'required']);
+        /*//$this->validate($request,['seccion'=>'required', 'pais'=>'required']);
         $producto = new Producto();
         $producto->Nombre=$request->nombre;
         $producto->Seccion=$request->seccion;
@@ -48,7 +48,15 @@ class ProductosController extends Controller
         $producto->Fecha=$request->fecha;
         $producto->Pais=$request->pais;
 
-        $producto->save();
+        $producto->save();*/
+        $entrada=$request->all();
+        if($archivo=$request->file('imagen')){
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images',$nombre);
+            $entrada['ruta']=$nombre;
+
+        }
+        Producto::create($entrada);
     }
 
     /**

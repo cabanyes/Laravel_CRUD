@@ -13,7 +13,7 @@ LEER REGISTROS
         <td>Precio</td>
         <td>Fecha</td>
         <td>Pais</td>
-
+        <td>Imagen</td>
     </tr>
 
     @foreach($productos as $producto)
@@ -23,6 +23,7 @@ LEER REGISTROS
         <td>{{$producto->precio}}</td>
         <td>{{$producto->fecha}}</td>
         <td>{{$producto->pais}}</td>
+        <td><img src="images/{{$producto->ruta}}" width="150"/></td>
     </tr>
 
     @endforeach

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+
+    if(Auth::check()){
+        return "estas logeado" ;
+    }else{
+        return "No estas logeado";
+    }
 });
 
 Route::resource('/productos','ProductosController');
@@ -30,3 +36,10 @@ Route::get('/actualizar', 'ProductosController@update');
 Route::get('/insertar', 'ProductosController@store');
 Route::get('/borrar', 'ProductosController@destroy');
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
