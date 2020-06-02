@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
-class RoleMiddleware
+use Illuminate\Support\Facades\Auth;
+class EsAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,10 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //return $next($request);
-        return redirect('/');
+        $user=Auth::User();
+        if(!$user->esAdmin()){
+            return redirect('/');
+        }
+        return $next($request);
     }
 }

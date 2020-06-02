@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +17,21 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    //return view('welcome');
 
+  /* $user=Auth::User();
+    if($user->esAdmin()){
+        echo "eres un sucio administrador";
+    }else {
+       echo "eres estudiante";
+    }*/
+    return view('welcome');
+/*
     if(Auth::check()){
         return "estas logeado" ;
     }else{
         return "No estas logeado";
     }
+    */
 });
 
 Route::resource('/productos','ProductosController');
@@ -43,3 +52,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin','AdministradorController@index');
