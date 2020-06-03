@@ -1,3 +1,3 @@
 git add .
-git commit -m "subida automatica desde .bat"
+git commit -m "%~1"
 git push
